@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../static/styles/header.css">
+    <title>RentRide-Collection</title>
+</head>
+
+<body>
+    
+    <header
+        class=" d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 mx-4 border-bottom">
+        <div class="col-md-3 mb-2 mb-md-0">
+            <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+                <img src="../static/images/logo.png" width="80" height="30" alt="">
+            </a>
+        </div>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 text-bg-dark">
+            <li><a href="{{url_for('motors')}}" class="nav-link px-2 link-secondary">Koleksi</a></li>
+            <li><a href="{{url_for('profile')}}" class="nav-link link-dark px-2">Profile</a></li>
+            <li><a href="{{url_for('about')}}" class="nav-link link-dark px-2">Tentang Kami</a></li>
+        </ul>
+
+        <div class="col-md-3 text-end">
+            {% if 'user_id' in session %} Hello {{session['user_name']}} {% else %} Belum Login {% endif %}
+        </div>
+    </header>
+    <main>
+        <h1 class="fw-bold fs-2 text-lg-start p-3">Pembayaran</h1>
+        <div class="container d-flex gap-3 flex-column">
+            <div class="grid-payemnt ">
+                <div class="left">
+                    <div id="flex" class="shadow-lg user-infor bg-warning rounded-pill p-2">
+                        <img src="../static/images/user.png" width="70" height="70" class="rounded-circle m-1 bg-black"
+                            alt="">
+                        <div class="grd_container">
+                            <div id="flex-in">
+                                <p class=" fs-5 m-0"> {% if 'user_id' in session %} LOGGED IN {% else %} NOT LOGGED IN
+                                    {% endif %}</p>
+                                <p class=" fs-5 fw-bold">{{ session['user_name'] }}</p>
+                            </div>
+                            <p class="flexing fs-5 fw-bold m-3 p-2">{{ session['user_email'] }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <main>
+                <div class="py-5">
+                    <div class="row g-5">
+                        <div class="col-md-5 col-lg-4 order-md-last">
+                            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="text-dark">Keranjang Anda</span>
+                            </h4>
+                            <ul class="list-group mb-3">
+                                <li class="list-group-item d-flex justify-content-between lh-sm">
+                                    <div>
+                                        <img src="../static/images/{{motor_gambar}}" width="100" height="100" alt="">
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between lh-sm">
+                                    <div>
+                                        <h6 class="my-0">Nama Motor</h6>
+                                        <small class="text-body-secondary">{{motor_nama}}</small>
+                                    </div>
+                                    <span class="text-body-secondary"></span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between lh-sm">
+                                    <div>
+                                        <h6 class="my-0">Deskripsi Motor</h6>
+                                        <small class="text-body-secondary">{{motor_desc}}</small>
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>Harga <span></span></span>
+                                    <strong>Rp. {{motor_harga}}</strong>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-7 col-lg-8">
+                            <form action="/payment" method="POST" class="needs-validation" novalidate>
+                                <div class="hiddenGroup">
+                                    <input hidden name="motor_nama" type="text" value="{{motor_nama}}">
+                                    <input hidden name="motor_desc" type="text" value="{{motor_desc}}">
+                                    <input hidden name="motor_harga" type="text" value="{{motor_harga}}">
+                                    <input hidden name="motor_status" type="text" value="{{motor_status}}">
+                                    <input hidden name="motor_gambar" type="text" value="{{motor_gambar}}">
+                                </div>
+
+                                <div class="row g-3">
+                                    <div class="col-sm-6">
+                                        <label for="firstName" class="form-label">Masukan Nama</label>
+                                        <input name="nama" type="text" class=" shadow form-control" id="frstName"
+                                            placeholder="" value="" required>
+                                        <div class="invalid-feedback">
+                                            Valid first name is required.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label for="hari" class="form-label">Hari Pemakaian</label>
+                                        <div class="input-group has-validation">
+                                            <input name="hari" type="number" min="1" max="99"
+                                                class="shadow form-control" id="hari" placeholder="hari" required>
+                                            <div class="invalid-feedback">
+                                                Masukan Jumlah Hari
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-10">
+                                        <label for="address" class="form-label">Alamat</label>
+                                        <input name="alamat" type="text" class="shadow form-control" id="alamat"
+                                            placeholder="1234 Main St" required>
+                                        <div class="invalid-feedback">
+                                            Masukan alamat Anda
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <label for="country" class="form-label">Tujuan..</label>
+                                        <select class="shadow form-select" id="country" name="kota" required>
+                                            <option value="Kota Yogyakarta">Kota Yogyakarta</option>
+                                            <option value="Yogyakarta">Yogyakarta</option>
+                                            <option value="Solo">Solo</option>
+                                            <option value="Klaten">Klaten</option>
+                                            <option value="Magelang">Magelang</option>
+                                        </select>
+                                        <div class="shadow invalid-feedback">
+                                            Pilih Kota Yang Benar.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr class="my-4">
+
+                                <div class="form-check">
+                                    <input name="antar" type="checkbox" class="shadow form-check-input"
+                                        id="same-address">
+                                    <label class="form-check-label" for="same-address">Antar Ke Alamat Saya (+Rp 10.000)
+                                    </label>
+                                </div>
+
+                                <hr class="my-4">
+
+                                <h4 class="mb-3">Pilih Pembayaran Anda</h4>
+
+                                <div class="col-md-5">
+                                    <label for="pembayaran" class="form-label">Pilih metode Pembayaran</label>
+                                    <select class="shadow form-select" id="pembayaran" name="pembayaran" required>
+                                        <option value="OVO">OVO</option>
+                                        <option value="DANA">DANA</option>
+                                        <option value="COD">COD</option>
+                                    </select>
+                                    <div class="shadow invalid-feedback">
+                                        Pilih Kota Yang Benar.
+                                    </div>
+                                </div>
+                                <hr class="my-4">
+
+                                <button class="shadow w-100 btn btn-warning btn-lg" type="submit">Lanjut Ke
+                                    Pembayaran</button>
+                            </form>
+                        </div>
+                    </div>
+            </main>
+        </div>
+    </main>
+    <footer class="bg-dark py-4 mt-auto">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto">
+                    <div class="small m-0 text-white">Copyright &copy; SahrilPutra - RentRide </div>
+                </div>
+                <div class="col-auto">
+                    <a class="link-light small" href="#!">Privacy</a>
+                    <span class="text-white mx-1">&middot;</span>
+                    <a class="link-light small" href="#!">Terms</a>
+                    <span class="text-white mx-1">&middot;</span>
+                    <a class="link-light small" href="#!">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>RentRide-payment</title>
+</head>
+
+<body>
+
+
+    <div class="px-4 py-5 my-5 text-center">
+        <img class="d-block mx-auto mb-4" src="../static/images/logo.png" alt="" width="250" height="100">
+        <h1 class="display-5 fw-bold text-body-emphasis">Konfirmasi Pembayaran Anda</h1>
+        <p>BIAAY ANTAR: {{user_antar}}</p>
+        <p>TOTAL HARI : {{user_hari}}</p>
+        <h3>Metode Pembayaran : {{user_pembayaran}}</h3>
+        <h1 class="display-5 fw-bold text-body-emphasis">Total Rp. <span id="totalKes">{{total}}</span></h1>
+        <form action="/sukses" method="POST">
+            <div class="col-lg-6 mx-auto">
+                <input hidden type="number"  name="total" id="" value="{{total}}">
+                <input type="number" class="lead my-4 fs-4 text-center fw-bold" name="nomnial" id="nominal">
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <button id="submitButton" type="submit"
+                        class="btn btn-warning btn-lg px-4 gap-3 fw-bold fs-4 text-light">BAYAR</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const nominalInp = document.querySelector('#nominal');
+        const submitButton = document.querySelector('#submitButton');
+        const totalKes = parseInt(document.querySelector('#totalKes').innerText);
+    
+        nominalInp.addEventListener('input', function() {
+            submitButton.disabled = false;
+            if (Number(nominalInp.value) < totalKes) {
+                submitButton.disabled = true;
+            } else {
+                submitButton.disabled = false;
+            }
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

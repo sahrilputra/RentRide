@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../static/styles/header.css">
+    <title>RentRide-Collection</title>
+</head>
+
+<body>
+ 
+    <header
+        class=" d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 mx-4 border-bottom">
+        <div class="col-md-3 mb-2 mb-md-0">
+            <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+                <img src="../static/images/logo.png" width="80" height="30" alt="">
+            </a>
+        </div>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 text-bg-dark">
+            <li><a href="{{url_for('motors')}}" class="nav-link px-2 link-secondary">Koleksi</a></li>
+            <li><a href="{{url_for('profile')}}" class="nav-link link-dark px-2">Profile</a></li>
+            <li><a href="{{url_for('about')}}" class="nav-link link-dark px-2">Tentang Kami</a></li>
+        </ul>
+
+        <div class="col-md-3 text-end">
+            {% if 'user_id' in session %} Hello {{session['user_name']}} {% else %} Belum Login {% endif %}
+        </div>
+    </header>
+
+    <div class="container text-center">
+        <h1 class=" fw-bold fs-1 text-center">Daftar Motor</h1>
+        <p id="sec">Jelajahi Seluruh Motor Kami</p>
+        <div class="input-group d-flex justify-content-center">
+            <div class="dropdown mx-2">
+                <a class="btn btn-warning dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    FILTER
+                </a>
+              
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{{url_for('motors', tipe='matic')}}">Matic</a></li>
+                  <li><a class="dropdown-item" href="{{url_for('motors', tipe='kopling')}}">Kopling</a></li>
+                  <li><a class="dropdown-item" href="{{url_for('motors', tipe='bebek')}}">Bebek</a></li>
+                  <li><a class="dropdown-item" href="{{url_for('motors')}}">Semua</a></li>
+                </ul>
+              </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="d-flex justify-content-center flex-wrap container mt-5 gap-5 my-4">
+            {% for motors in motor %}
+            <form action="/details" method="POST">
+                <input hidden name="motor_nama" type="text" value="{{motors['nama']}}">
+                <input hidden name="motor_desc" type="text" value="{{motors['desc']}}">
+                <input hidden name="motor_harga" type="text" value="{{motors['harga']}}">
+                <input hidden name="motor_status" type="text" value="{{motors['status']}}">
+                <input hidden name="motor_gambar" type="text" value="{{motors['gambar']}}">
+              
+                    <div class="card p-3 bg-white position-relative">
+                        <span
+                            class="badge rounded-pill w-25 bg-warning position-absolute p-1">{{motors['status']}}</span>
+                        <div class="about-product text-center mt-2"><img src="../static/images/{{motors['gambar']}}"
+                                width="200" height="200">
+                            <div>
+                                <h4>{{motors['nama']}}</h4>
+                                <h6 class="mt-0 text-black-50">{{motors['desc']}}</h6>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between total fw-bold mt-4">
+                            <span>Harga</span><span>Rp. {{motors['harga']}} / hari</span>
+                        </div>
+
+                        <button class=" my-2 btn btn-warning fw-bold text-light">PILIH</button>
+                    </div>
+            </form>
+            {% endfor %}
+        </div>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../static/styles/header.css">
+    <title>RentRide</title>
+</head>
+
+<body>
+
+    <header
+        class=" d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 mx-4 border-bottom">
+        <div class="col-md-3 mb-2 mb-md-0">
+            <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+                <img src="../static/images/logo.png" width="80" height="30" alt="">
+            </a>
+        </div>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 text-bg-dark">
+            <li><a href="{{url_for('motors')}}" class="nav-link px-2 link-secondary">Koleksi</a></li>
+            <li><a href="{{url_for('profile')}}" class="nav-link link-dark px-2">Profile</a></li>
+            <li><a href="{{url_for('about')}}" class="nav-link link-dark px-2">Tentang Kami</a></li>
+        </ul>
+
+        <div class="col-md-3 text-end">
+            {% if 'user_id' in session %} Hello {{session['user_name']}} {% else %} Belum Login {% endif %}
+        </div>
+    </header>
+    <main>
+        {% if message %}
+        <div class="alert alert-danger" role="alert">
+            <p>{{ message }}</p>
+        </div>
+        {% endif %}
+        <div class="" id="gridParent">
+            <div class="lef">
+                <h1 id="title">Jelajahi Jogja <br>tanpa ribet</h1>
+                <p id="sec">Jelajahi kota dengan bebas dan tanpa ribet! Sewa motor dari RentRide. Temukan destinasi
+                    tersembunyi dan nikmati liburan mu.</p>
+                <a href="{{url_for('motors')}}" class=" btn btn-warning text-light fs-5 fw-bold m-2 shadow">Mulai Jelajah</a>
+                <a href="{{url_for('login')}}" class=" btn btn-dark text-light fs-5 fw-bold m-2 shadow">Masuk</a>
+
+            </div>
+
+            <div class="rig">
+                <img src="../static/images/bg.png" id="bg" alt="">
+            </div>
+        </div>
+
+        <div class="container-fluid text-center my-5">
+            <div class="container px-4 py-5" id="featured-3">
+                <h3 class="pb-2 border-bottom fw-bolder fs-2">Kenapa Kami ?</h3>
+
+                <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+                    <div class="feature col">
+                        <div
+                            class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                            <i class="bi bi-gear-wide-connected"></i>
+                        </div>
+                        <h3 class="fs-2 text-body-emphasis">Terawat</h3>
+                        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another
+                            sentence and probably just keep going until we run out of words.</p>
+
+                    </div>
+                    <div class="feature col">
+                        <div
+                            class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                            <i class="bi bi-currency-exchange"></i>
+                        </div>
+                        <h3 class="fs-2 text-body-emphasis">Harga Terjangkau</h3>
+                        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another
+                            sentence and probably just keep going until we run out of words.</p>
+                    </div>
+                    <div class="feature col">
+                        <div
+                            class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                            <i class="bi bi-people-fill"></i>
+                        </div>
+                        <h3 class="fs-2 text-body-emphasis">Pelanggan Terbanyak</h3>
+                        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another
+                            sentence and probably just keep going until we run out of words.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid text-center my-3">
+            <h3 class="pb-2 border-bottom fw-bolder fs-2">Koleksi Motor Kami </h3>
+
+            <div class="container text-center">
+                <div class="p-5 mb-1 bg-body-tertiary rounded-3">
+                    <div class="h-100 p-5 bg-body-tertiary border rounded-3 bg-dark bg-opacity-25" id="bgImg-matic">
+                        <h2 class=" fw-bold">Motor Matic</h2>
+                        <p class=" text-light ">Terlihat Keren Tanpa Ribet Dengan Motor Andalan Kami</p>
+                        <a href="{{url_for('motors', tipe='matic')}}" class="btn btn-warning shadow-lg"
+                            type="button">Jelajahi</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-md-stretch m-3">
+                <div class="col-md-6">
+                    <div class="h-100 p-5 bg-body-tertiary border rounded-3 bg-dark bg-opacity-25" id="bgImg-kopling">
+                        <h2 class=" fw-bold">Motor Kopling</h2>
+                        <p class=" text-light ">Terlihat Keren Tanpa Ribet Dengan Motor Andalan Kami</p>
+                        <a href="{{url_for('motors', tipe='kopling')}}" class="btn btn-warning shadow-lg"
+                            type="button">Jelajahi</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="h-100 p-5 bg-body-tertiary border rounded-3  bg-dark bg-opacity-25" id="bgImg-bebek">
+                        <h2 class=" fw-bold">Motor Bebek</h2>
+                        <p class=" text-light">Makin Lincah Dengan Motor Bebek Kami </p>
+                        <a href="{{url_for('motors', tipe='bebek')}}" class="btn btn-warning shadow-lg" type="button">Jelajahi</a>
+                    </div>
+                </div>
+            </div>
+            <a href="{{url_for('motors')}}" class="btn btn-dark shadow-lg fw-bold p-3 fs-6 text-white my-5" type="button">Lihat Lebih
+                Banyak</a>
+        </div>
+
+        <div class="b-example-divider"></div>
+        <!--  -->
+        <div class="container my-5">
+            <h3 class="pb-2 border-bottom fw-bolder fs-2 my-5 text-center">Review Pelanggan Setia Kami </h3>
+            <div id="carouselExampleInterval" class="carousel slide carousel-dark" data-bs-ride="carousel">
+                <div class="carousel-inner text-center">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <img class="rounded-circle shadow-1-strong mb-4"
+                            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar"
+                            style="width: 150px;" />
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-lg-8">
+                                <h5 class="mb-3">Maria Kate</h5>
+                                <p>Photographer</p>
+                                <p class="text-muted">
+                                    <i class="fas fa-quote-left pe-2"></i>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti
+                                    nesciunt sint eligendi reprehenderit reiciendis, quibusdam illo, beatae quia
+                                    fugit consequatur laudantium velit magnam error. Consectetur distinctio fugit
+                                    doloremque.
+                                </p>
+                            </div>
+                        </div>
+                        <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+                            <li><i class="fas fa-star fa-sm"></i></li>
+                            <li><i class="fas fa-star fa-sm"></i></li>
+                            <li><i class="fas fa-star fa-sm"></i></li>
+                            <li><i class="fas fa-star fa-sm"></i></li>
+                            <li><i class="far fa-star fa-sm"></i></li>
+                        </ul>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img class="rounded-circle shadow-1-strong mb-4"
+                            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar"
+                            style="width: 150px;" />
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-lg-8">
+                                <h5 class="mb-3">Maria Kate</h5>
+                                <p>Photographer</p>
+                                <p class="text-muted">
+                                    <i class="fas fa-quote-left pe-2"></i>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti
+                                    nesciunt sint eligendi reprehenderit reiciendis, quibusdam illo, beatae quia
+                                    fugit consequatur laudantium velit magnam error. Consectetur distinctio fugit
+                                    doloremque.
+                                </p>
+                            </div>
+                        </div>
+                        <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+                            <li><i class="fas fa-star fa-sm"></i></li>
+                            <li><i class="fas fa-star fa-sm"></i></li>
+                            <li><i class="fas fa-star fa-sm"></i></li>
+                            <li><i class="fas fa-star fa-sm"></i></li>
+                            <li><i class="far fa-star fa-sm"></i></li>
+                        </ul>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="rounded-circle shadow-1-strong mb-4"
+                            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar"
+                            style="width: 150px;" />
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-lg-8">
+                                <h5 class="mb-3">Maria Kate</h5>
+                                <p>Photographer</p>
+                                <p class="text-muted">
+                                    <i class="fas fa-quote-left pe-2"></i>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti
+                                    nesciunt sint eligendi reprehenderit reiciendis, quibusdam illo, beatae quia
+                                    fugit consequatur laudantium velit magnam error. Consectetur distinctio fugit
+                                    doloremque.
+                                </p>
+                            </div>
+                        </div>
+                        <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+                            <li><i class="fas fa-star fa-sm"></i></li>
+                            <li><i class="fas fa-star fa-sm"></i></li>
+                            <li><i class="fas fa-star fa-sm"></i></li>
+                            <li><i class="fas fa-star fa-sm"></i></li>
+                            <li><i class="far fa-star fa-sm"></i></li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="container my-5">
+            <aside class="bg-dark bg-gradient rounded-3 py-5 p-sm-5 mt-5">
+                <div
+                    class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
+                    <div class="mb-4 mb-xl-0">
+                        <div class="fs-3 fw-bold text-white">Pengguna Baru ?, Banyak promo menarik disini</div>
+                        <div class="text-white-50">Daftar Segera Untuk Mengklaim Voucher Anda</div>
+                    </div>
+                    <div class="ms-xl-4">
+                        <div class="input-group mb-2">
+                            <input class="form-control" type="text" placeholder="Email address..."
+                                aria-label="Email address..." aria-describedby="button-newsletter" />
+                            <button class="btn btn-outline-light" id="button-newsletter" type="button">Sign up</button>
+                        </div>
+                        <div class="small text-white-50">Dengan Mendaftar Anda Bersedia Menreria Syarat Dan Ketentuan
+                            Kami</div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="bg-dark py-4 mt-auto">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto">
+                    <div class="small m-0 text-white">Copyright &copy; Your Website 2023</div>
+                </div>
+                <div class="col-auto">
+                    <a class="link-light small" href="#!">Privacy</a>
+                    <span class="text-white mx-1">&middot;</span>
+                    <a class="link-light small" href="#!">Terms</a>
+                    <span class="text-white mx-1">&middot;</span>
+                    <a class="link-light small" href="#!">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

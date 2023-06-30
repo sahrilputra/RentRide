@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Profile Status</title>
+</head>
+
+<body>
+
+    <header
+        class=" d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 mx-4 border-bottom">
+        <div class="col-md-3 mb-2 mb-md-0">
+            <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+                <img src="../static/images/logo.png" width="80" height="30" alt="">
+            </a>
+        </div>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 text-bg-dark">
+            <li><a href="{{url_for('motors')}}" class="nav-link px-2 link-secondary">Koleksi</a></li>
+            <li><a href="{{url_for('profile')}}" class="nav-link link-dark px-2">Profile</a></li>
+            <li><a href="{{url_for('about')}}" class="nav-link link-dark px-2">Tentang Kami</a></li>
+        </ul>
+
+        <div class="col-md-3 text-end">
+            {% if 'user_id' in session %} Hello {{session['user_name']}} {% else %} Belum Login {% endif %}
+        </div>
+    </header>
+    {% if 'user_id' in session %}
+    <section class="vh-100 text-dark">
+        <div class="container py-5 h-75">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-lg-6 mb-4 mb-lg-0">
+                    <div class="card mb-3" style="border-radius: .5rem;">
+                        <div class="row g-0">
+                            <div class="col-md-4 gradient-custom text-center text-dark"
+                                style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                                <img src="../static/images/user.png" alt="Avatar" class="img-fluid my-5"
+                                    style="width: 80px;" />
+                                <p>hello</p>
+                                <h5 class=" text-dark fs-3">{{ session['user_name'] }}</h5>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body p-4">
+                                    <h6>Informasi Pengguna</h6>
+                                    <hr class="mt-0 mb-4">
+                                    <div class="row pt-1">
+                                        <div class="col-8 mb-3">
+                                            <h6>Email</h6>
+                                            <p class="text-muted">{{ session['user_email'] }}</p>
+
+                                            <form action="/logout" method="POST">
+                                                <button type="submit" class="btn btn-primary">Logout</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <h6>Informasi Pemesanan</h6>
+                                    <hr class="mt-0 mb-4">
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                            <h6>Pemesanan Terakrhir</h6>
+                                            <p class="text-muted">{{order_terakhir}}</p>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <h6>Rata Durasi Pemakaian</h6>
+                                            <p class="text-muted">{{avg_pemakaian}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                            <h6>Total Pengeluaran</h6>
+                                            <p class="text-muted">{{ovr_total}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center fs-6 fw-bold">Riwayat Pemesanan</p>
+                            {% if orders_data %}
+                            <div class="container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Motor</th>
+                                            <th>Alamat</th>
+                                            <th>Hari Pemakaian</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    {% for order in orders_data %}
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ order.id }}</td>
+                                            <td>{{ order.motor }}</td>
+                                            <td>{{ order.alamat }}</td>
+                                            <td>{{ order.haripemakaian }}</td>
+                                            <td>{{ order.total }}</td>
+                                        </tr>
+                                    </tbody>
+                                    {% endfor %}
+                                </table>
+                                {% else %}
+                                <p>Belum Tersedia.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% else %}
+    <p>Silakan login terlebih dahulu.</p>
+    <p><a href="/login">Login</a></p>
+    {% endif %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

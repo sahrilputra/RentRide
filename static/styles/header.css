@@ -1,0 +1,227 @@
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.b-example-divider {
+    width: 100%;
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+.b-example-vr {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 100vh;
+}
+
+.bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+}
+
+.nav-scroller {
+    position: relative;
+    z-index: 2;
+    height: 2.75rem;
+    overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+    display: flex;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    margin-top: -1px;
+    overflow-x: auto;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+.btn-bd-primary {
+    --bd-violet-bg: #712cf9;
+    --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: var(--bs-white);
+    --bs-btn-bg: var(--bd-violet-bg);
+    --bs-btn-border-color: var(--bd-violet-bg);
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-hover-bg: #6528e0;
+    --bs-btn-hover-border-color: #6528e0;
+    --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+    --bs-btn-active-color: var(--bs-btn-hover-color);
+    --bs-btn-active-bg: #5a23c8;
+    --bs-btn-active-border-color: #5a23c8;
+}
+
+.bd-mode-toggle {
+    z-index: 1500;
+}
+
+.form-control-dark {
+    border-color: var(--bs-gray);
+}
+
+.form-control-dark:focus {
+    border-color: #fff;
+    box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .25);
+}
+
+.text-small {
+    font-size: 85%;
+}
+
+.dropdown-toggle:not(:focus) {
+    outline: 0;
+}
+
+#content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.rightContent {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    align-items: end;
+    justify-content: center;
+}
+
+.leftcontent {
+    display: flex;
+    align-items: center;
+}
+
+#rel {
+    position: relative;
+}
+
+#logo {
+    position: absolute;
+    left: 0;
+    top: 50;
+}
+
+#gridParent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+
+#bg {
+    height: 500px;
+    object-fit: contain;
+    width: 100%;
+}
+
+#title {
+    font-size: 44px;
+    font-weight: bolder;
+}
+
+.lef {
+    width: 80%;
+
+}
+
+#sec {
+    color: #8888;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+#bgImg-matic{
+    background-image: url('../images/matic.png');
+    object-fit: cover;  
+    background-size: 200px;
+    background-repeat: no-repeat;
+    background-image: -o-repeating-linear-gradient();
+    background-position: 0;
+    background-position: left 50px;
+
+}
+
+#bgImg-kopling{
+    background-image: url('../images/kopling.png');
+    object-fit: cover;  
+    background-size: 200px;
+    background-repeat: no-repeat;
+    background-image: -o-repeating-linear-gradient();
+    background-position: 0;
+    background-position: left 50px;
+}
+
+
+#bgImg-bebek{
+    background-image: url('../images/bebek.png');
+    object-fit: cover;  
+    background-size: 330px;
+    background-repeat: no-repeat;
+    background-image: -o-repeating-linear-gradient();
+    background-position: 0;
+    background-position: left 60px;
+}
+
+.griding{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    gap: 40px;
+}
+
+.left{
+    width: 100%;
+}
+.detailImg{
+    width: 80%;
+    object-fit: contain;
+}
+
+.right{
+    width: 90%;
+}
+
+.grid-payemnt{
+    width: 100%;
+
+}
+#flex{
+    width: 50%;
+    height: 90px;
+    padding: 2px;
+    margin-left: 22px;
+    display: flex;
+    flex-direction: row;   
+}
+#flex-in{
+    gap: 2px;
+    margin-left: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.grd_container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.flexing{
+    display: flex;
+    align-items: flex-end;
+}

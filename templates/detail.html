@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../static/styles/header.css">
+    <link rel="stylesheet" href="../static/styles/styles.css">
+    <title>RentRide-Collection</title>
+</head>
+
+<body>
+    
+    <header
+        class=" d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 mx-4 border-bottom">
+        <div class="col-md-3 mb-2 mb-md-0">
+            <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+                <img src="../static/images/logo.png" width="80" height="30" alt="">
+            </a>
+        </div>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 text-bg-dark">
+            <li><a href="{{url_for('motors')}}" class="nav-link px-2 link-secondary">Koleksi</a></li>
+            <li><a href="{{url_for('profile')}}" class="nav-link link-dark px-2">Profile</a></li>
+            <li><a href="{{url_for('about')}}" class="nav-link link-dark px-2">Tentang Kami</a></li>
+        </ul>
+
+        <div class="col-md-3 text-end">
+            {% if 'user_id' in session %} Hello {{session['user_name']}} {% else %} Belum Login {% endif %}
+        </div>
+    </header>
+
+    <main>
+        <div class="griding my-4" id="detailsMotor">
+            <div class="left">
+                <img class="detailImg" src="../static/images/{{motor_gambar}}" alt="">
+            </div>
+
+            <div class="right">
+                <div class="konten">
+                    <h1 class=" fw-bold fs-1">{{motor_nama}}</h1>
+                    <p id="sec">{{motor_desc}}.</p>
+                    <h1 class=" my-3 fw-bold fs-1">Rp. {{motor_harga}}<span class=" opacity-50"> / hari</span></h1>
+                    <form action="/checkout" method="POST">
+                        <input hidden name="motor_nama" type="text" value="{{motor_nama}}">
+                        <input hidden name="motor_desc" type="text" value="{{motor_desc}}">
+                        <input hidden name="motor_harga" type="text" value="{{motor_harga}}">
+                        <input hidden name="motor_status" type="text" value="{{motor_status}}">
+                        <input hidden name="motor_gambar" type="text" value="{{motor_gambar}}">
+                        <button type="submit" class=" btn btn-warning">BOKING SEKARANG</button>
+                        <a class=" btn btn-dark" href="{{url_for('motors')}}"> KEMBALI </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-dark py-4 mt-auto">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto">
+                    <div class="small m-0 text-white">Copyright &copy; SahrilPutra - RentRide </div>
+                </div>
+                <div class="col-auto">
+                    <a class="link-light small" href="#!">Privacy</a>
+                    <span class="text-white mx-1">&middot;</span>
+                    <a class="link-light small" href="#!">Terms</a>
+                    <span class="text-white mx-1">&middot;</span>
+                    <a class="link-light small" href="#!">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
